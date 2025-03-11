@@ -4,7 +4,8 @@ import AddUser from '../components/AddUser.vue'
 
 const routes = [
   { path: '/', component: UserList },
-  { path: '/add-user', component: AddUser }
+  { path: '/add-user', component: AddUser },
+  { path: '/edit-user/:id', name: 'edit-user', component: AddUser }
 ]
 
 const router = createRouter({

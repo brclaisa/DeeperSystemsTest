@@ -1,4 +1,4 @@
-## Installation
+## Installation/API
 
 1. Clone the repository:
 
@@ -33,4 +33,27 @@
    flask run
    ```
 
-2. Open your web browser and go to `http://localhost:5000` to access the application.
+
+## Installation/WEB
+
+1. Go to folder:
+
+   ```bash
+   cd webapp
+   ```
+
+2. Install dependences:
+
+   ```
+   yarn
+   ```
+
+## Usage
+
+1. Run the application:
+
+   ```
+   yarn dev
+   ```
+
+2. Open your web browser and go to `http://localhost:9000` to access the application.

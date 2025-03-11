@@ -18,7 +18,8 @@ def parse_roles(data):
     return roles
 
 def format_user(user):
-    return {
+ return {
+        "id": str(user["_id"]),
         "user": user["username"],
         "password": user["password"],
         "is_user_admin": "admin" in user["roles"],
@@ -43,14 +44,12 @@ def get_users():
     users = mongo.db.users.find()
     result = []
     for user in users:
-        user.pop('_id', None) 
         result.append(format_user(user))
     return jsonify({"users": result})
 
 @app.route('/api/users/<user_id>', methods=['GET'])
 def get_user(user_id):
     user = mongo.db.users.find_one_or_404({"_id": ObjectId(user_id)})
-    user.pop('_id', None)  
     return jsonify(format_user(user))
 
 @app.route('/api/users/<user_id>', methods=['PUT'])
