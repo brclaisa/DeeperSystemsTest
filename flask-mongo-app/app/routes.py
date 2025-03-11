@@ -1,8 +1,11 @@
-from flask import request, jsonify
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 from bson.objectid import ObjectId
 from . import app, mongo
 from .models import User, UserPreferences
 from datetime import datetime
+
+CORS(app)
 
 def parse_roles(data):
     roles = []
@@ -40,14 +43,14 @@ def get_users():
     users = mongo.db.users.find()
     result = []
     for user in users:
-        user.pop('_id', None)  # Remove o campo _id
+        user.pop('_id', None) 
         result.append(format_user(user))
     return jsonify({"users": result})
 
 @app.route('/api/users/<user_id>', methods=['GET'])
 def get_user(user_id):
     user = mongo.db.users.find_one_or_404({"_id": ObjectId(user_id)})
-    user.pop('_id', None)  # Remove o campo _id
+    user.pop('_id', None)  
     return jsonify(format_user(user))
 
 @app.route('/api/users/<user_id>', methods=['PUT'])
